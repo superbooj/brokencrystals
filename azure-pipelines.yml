@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  policy: "Default IaC policy,mb-misconfig,mb-secrets,Default secrets policy,Default vulnerabilities policy"
+  policy: "mb-vuln1, Default IaC policy, mb-misconfig,mb-secrets,Default secrets policy, Default vulnerabilities policy"
   SCAN_PATH: "$(Build.Repository.LocalPath)"
   IMAGE: setestimage
   TAG: $(Build.BuildNumber)
