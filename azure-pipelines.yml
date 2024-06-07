@@ -28,6 +28,13 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: CmdLine@2
+      inputs:
+        script:
+          curl -o wizcli ​https://wizcli.app.wiz.io/latest/wizcli
+          chmod +x wizcli
+          ./wizcli auth --id $(WIZ_CLIENT_ID) --secret $(WIZ_CLIENT_SECRET)
+          ./wizcli docker scan --image nginx:latest
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
