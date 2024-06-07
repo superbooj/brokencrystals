@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  policy: "Default IaC policy,mb-misconfig,mb-secrets,Default secrets policy"
+  policy: "Default IaC policy,mb-misconfig,mb-secrets,Default secrets policy,Default vulnerabilities policy"
   SCAN_PATH: "$(Build.Repository.LocalPath)"
   IMAGE: setestimage
   TAG: $(Build.BuildNumber)
@@ -40,4 +40,13 @@ steps:
       docker build "$SCAN_PATH" -t "$IMAGE:$TAG"
   displayName: Build Docker Image
   condition: succeededOrFailed()
+
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      /usr/bin/./wizcli docker scan --image "$IMAGE:$TAG" -p "secrets"
+  displayName: Scan Image with WizCLI
+  condition: succeededOrFailed()
+
 
