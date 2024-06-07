@@ -24,7 +24,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      /usr/bin/./wizcli iac scan --path "$SCAN_PATH" -p mb-vuln1
+      /usr/bin/./wizcli iac scan --path "$SCAN_PATH" -p mbmisconfig
   displayName: Scan IaC with WizCLI
   condition: succeededOrFailed()
 
