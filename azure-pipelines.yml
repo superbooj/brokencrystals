@@ -31,16 +31,16 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      /usr/bin/./wizcli docker scan --image "$IMAGE:$TAG" -p "secrets"
+      /usr/bin/./wizcli docker scan --image "$IMAGE:$TAG" -p "$policy"
   displayName: Scan Image with WizCLI
   condition: succeededOrFailed()
   
-- task: CmdLine@2
-  inputs:
-    script: |
-      docker build "$SCAN_PATH" -t "$IMAGE:$TAG"
-  displayName: Build Docker Image
-  condition: succeededOrFailed()
+#- task: CmdLine@2
+#  inputs:
+#    script: |
+#      docker build "$SCAN_PATH" -t "$IMAGE:$TAG"
+#  displayName: Build Docker Image
+#  condition: succeededOrFailed()
 
 
 - task: CmdLine@2
